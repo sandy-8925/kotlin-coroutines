@@ -6,7 +6,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() {
-    fourthCoroutine()
+    fifthCoroutine()
+}
+
+private fun fifthCoroutine() = runBlocking {
+    val job = launch {
+        delay(1000L)
+        println("World")
+    }
+    println("Hello")
+    job.join()
+    println("Done")
 }
 
 private fun fourthCoroutine() = runBlocking {
