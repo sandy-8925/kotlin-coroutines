@@ -1,5 +1,15 @@
 package org.example.coroutines
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
 fun main() {
-    println("Hello World!")
+    runBlocking {
+        launch {
+            delay(1000L)
+            println("World")
+        }
+        println("Hello")
+    }
 }
