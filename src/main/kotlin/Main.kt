@@ -1,12 +1,22 @@
 package org.example.coroutines
 
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 fun main() {
-    sixthCoroutine()
+    seventhCoroutine()
+}
+
+private fun seventhCoroutine() = runBlocking {
+    val job = launch {
+        repeat(1000) { ctr ->
+            println("Sleeping, counter = $ctr")
+            delay(500L)
+        }
+    }
+    delay(1300L)
+    println("Tired of waiting")
+    job.cancelAndJoin()
+    println("Done")
 }
 
 private fun sixthCoroutine() = runBlocking {
