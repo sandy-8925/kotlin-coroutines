@@ -3,7 +3,28 @@ package org.example.coroutines
 import kotlinx.coroutines.*
 
 fun main() {
-    tenthCoroutine()
+    eleventthCoroutine()
+}
+
+private fun eleventthCoroutine() = runBlocking {
+    val job = launch {
+        try {
+            repeat(1000) { counter ->
+                println("Iteration number $counter")
+                delay(500L)
+            }
+        } finally {
+            withContext(NonCancellable) {
+                println("Finished the loop")
+                delay(1000L)
+                println("Delayed for one second because I'm non-cancellable")
+            }
+        }
+    }
+    delay(1300L)
+    println("Tired of waiting")
+    job.cancelAndJoin()
+    println("Done")
 }
 
 private fun tenthCoroutine() = runBlocking {
