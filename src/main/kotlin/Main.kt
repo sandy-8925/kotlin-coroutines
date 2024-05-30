@@ -1,12 +1,25 @@
 package org.example.coroutines
 
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() {
-    secondCoroutine()
+    thirdCoroutine()
 }
+
+private fun thirdCoroutine() = runBlocking { thirdDoWorld() }
+
+private suspend fun thirdDoWorld() = coroutineScope {
+    launch {
+        delay(1000L)
+        println("World")
+    }
+    println("Hello")
+}
+
+
 
 private fun secondCoroutine() {
     runBlocking {
