@@ -6,7 +6,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() {
-    fifthCoroutine()
+    sixthCoroutine()
+}
+
+private fun sixthCoroutine() = runBlocking {
+    repeat(50_000) { // launch a lot of coroutines
+        launch {
+            delay(5000L)
+            print(".")
+        }
+    }
 }
 
 private fun fifthCoroutine() = runBlocking {
