@@ -3,7 +3,16 @@ package org.example.coroutines
 import kotlinx.coroutines.*
 
 fun main() {
-    eleventthCoroutine()
+    twelfthCoroutine()
+}
+
+private fun twelfthCoroutine() = runBlocking {
+    withTimeout(1300L) {
+        repeat(1000) { counter ->
+            println("Iteration number $counter")
+            delay(500L)
+        }
+    }
 }
 
 private fun eleventthCoroutine() = runBlocking {
